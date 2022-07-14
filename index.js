@@ -24,7 +24,7 @@ const loadEvent = () => {
 
     let player;
     let computer;
-    let result; 
+    // let result; 
 
 
     choiceBtns.forEach(button => button.addEventListener("click", () => {
@@ -32,13 +32,14 @@ const loadEvent = () => {
         player = button.textContent;
         playerText.textContent = `Player: ${player}`;
 
-        // Add value to the computer with the function below
+        // 1. Add value to the computer with the function below, 2. then update the text, 3. then call the compare function
         computerTurn();
         computerText.textContent = `Computer: ${computer}`;
         resultText.textContent = checkWinner();
     }));
 
-    // Randomize value for computer
+
+    // Randomize computer value
     computerTurn = () => {
         const randNum = Math.floor(Math.random() * 3) + 1;
 
@@ -55,8 +56,8 @@ const loadEvent = () => {
         }
     };
 
-    // Compare the two values, return text
 
+    // Compare the two values, return text
     const win = "You win!";
     const lose = "You lose!";
     const tie = "It is a tie";
