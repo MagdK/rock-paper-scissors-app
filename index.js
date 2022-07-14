@@ -1,4 +1,3 @@
-console.log("Testing");
 const pageContent = () => {
     return `
     <div id="gameDiv">
@@ -14,7 +13,6 @@ const pageContent = () => {
 };
 
 
-
 const loadEvent = () => {
     const rootElement = document.getElementById("root");
     rootElement.insertAdjacentHTML("beforeend", pageContent());
@@ -28,6 +26,7 @@ const loadEvent = () => {
     let computer;
     let result; 
 
+
     choiceBtns.forEach(button => button.addEventListener("click", () => {
 
         player = button.textContent;
@@ -37,7 +36,8 @@ const loadEvent = () => {
         resultText.textContent = checkWinner();
     }));
 
-    function computerTurn(){
+
+    computerTurn = () => {
         const randNum = Math.floor(Math.random() * 3) + 1;
 
         switch(randNum){
@@ -53,7 +53,8 @@ const loadEvent = () => {
         }
     }
 
-    function checkWinner() {
+
+    checkWinner = () => {
         if(player === computer){
             return "Draw!";
         }
