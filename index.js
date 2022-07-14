@@ -5,9 +5,9 @@ const pageContent = () => {
         <h1 class="gameText" id="computerText">Computer: </h1>
         <h1 class="gameText" id="resultText">Result: </h1>
 
-        <button class="choiceBtn">ROCK</button>
-        <button class="choiceBtn">PAPER</button>
-        <button class="choiceBtn">SCISSORS</button>
+        <button>ROCK</button>
+        <button>PAPER</button>
+        <button>SCISSORS</button>
     </div>
     `
 };
@@ -18,25 +18,27 @@ const loadEvent = () => {
     rootElement.insertAdjacentHTML("beforeend", pageContent());
 
     const playerText = document.getElementById("playerText");
-    console.log(playerText);
     const computerText = document.getElementById("computerText");
     const resultText = document.getElementById("resultText");
-    const choiceBtns = document.querySelectorAll(".choiceBtn");
+    const choiceBtns = document.querySelectorAll("button");
+
     let player;
     let computer;
     let result; 
 
 
     choiceBtns.forEach(button => button.addEventListener("click", () => {
-
+        // Add value to player from the button that has been clicked
         player = button.textContent;
-        computerTurn();
         playerText.textContent = `Player: ${player}`;
+
+        // Add value to the computer with the function below
+        computerTurn();
         computerText.textContent = `Computer: ${computer}`;
         resultText.textContent = checkWinner();
     }));
 
-
+    // Randomize value for computer
     computerTurn = () => {
         const randNum = Math.floor(Math.random() * 3) + 1;
 
@@ -51,23 +53,28 @@ const loadEvent = () => {
                 computer = "SCISSORS";
                 break;
         }
-    }
+    };
 
+    // Compare the two values, return text
+
+    const win = "You win!";
+    const lose = "You lose!";
+    const tie = "It is a tie";
 
     checkWinner = () => {
         if(player === computer){
-            return "Draw!";
+            return `Result: ${tie}!`;
         }
         else if(computer === "ROCK"){
-            return (player === "PAPER") ? "You win!" : "You lose!"
+            return (player === "PAPER") ? `Result: ${win}` : `Result: ${lose}!`
         }
         else if(computer === "PAPER"){
-            return (player === "SCISSORS") ? "You win!" : "You lose!"
+            return (player === "SCISSORS") ? `Result: ${win}` : `Result: ${lose}!`
         }
         else if(computer === "SCISSORS"){
-            return (player === "ROCK") ? "You win!" : "You lose!"
+            return (player === "ROCK") ? `Result: ${win}` : `Result: ${lose}!`
         }
-    }
-}
+    };
+};
 
 window.addEventListener("load", loadEvent);
